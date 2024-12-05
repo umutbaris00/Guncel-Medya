@@ -1,31 +1,31 @@
 
   
 
-![İstinye Üniversitesi](https://i.hizliresim.com/9e5xcvw.png)
+![Güncel Medya](https://i.hizliresim.com/9e5xcvw.png)
 
   
 
 ## Proje Hakkında
 
-[Güncel Medya güncel günlük haberleri size anında sunmayı amaçlıyor.]
+Güncel Medya güncel günlük haberleri size anında sunmayı amaçlıyor.
 
   
 
 ## Ekibimiz
 
 -  **Danışman:**  
-[https://github.com/umutbaris00](Umut Barış)
+(Umut Barış) [https://github.com/umutbaris00]
 
 
 -  **Takım Üyeleri:**
 
-- X [https://github.com/umutbaris00](Umut Barış)
+- Umut Barış [https://github.com/umutbaris00]
 
   
 
 ## Özellikler
 
-- [En Güncel Haberleri Anlık Öğrenin]
+- En Güncel Haberleri Anlık Öğrenin
 
 
   
@@ -58,7 +58,7 @@
 
 ```bash
 
-git  clone [https://github.com/umutbaris00/Guncel-Medya]
+git  clone https://github.com/umutbaris00/Guncel-Medya
 
 ```
 
@@ -68,7 +68,7 @@ git  clone [https://github.com/umutbaris00/Guncel-Medya]
 
 ```bash
 
-cd [Guncel-Medya]
+cd Guncel-Medya
 
 ```
 
@@ -108,31 +108,12 @@ lib/
 
 ```
 
-  
-
-## Ekran Görüntüleri
-
-[Uygulama ekran görüntüleri buraya eklenecek]
-
-  
-
-## Projeye Katkı Sağlama
-
-1. Projeyi forklayın
-
-2. Yeni bir dal oluşturun (`git checkout -b ozellik/YeniOzellik`)
-
-3. Değişikliklerinizi kaydedin (`git commit -m 'Yeni özellik eklendi'`)
-
-4. Dalınıza gönderin (`git push origin ozellik/YeniOzellik`)
-
-5. Pull Request oluşturun
 
   
 
 ## Lisans
 
-[Lisans türü] kapsamında lisanslanmıştır. Daha fazla bilgi için `LICENSE` dosyasını inceleyebilirsiniz.
+MIT License kapsamında lisanslanmıştır. Daha fazla bilgi için `LICENSE` dosyasını inceleyebilirsiniz.
 
   
 
