@@ -74,7 +74,10 @@ class _LanguageSelectionScreenState extends State<LanguageSelectionScreen> {
               const SizedBox(height: 20),
               ElevatedButton(
                 onPressed: () => _saveLanguageAndProceed(context),
-                child: const Text('Seçimi Onayla'),
+                child: const Text(
+                  'Seçimi Onayla',
+                  style: TextStyle(color: Colors.white), 
+                ),
                 style: ElevatedButton.styleFrom(
                   padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 12),
                   shape: RoundedRectangleBorder(

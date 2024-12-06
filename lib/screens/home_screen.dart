@@ -13,13 +13,15 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  String _language = 'en'; 
-  String homeTitle = 'Loading...'; 
+  String _language = 'en';
+  String homeTitle = 'Loading...';
   String welcomeText = 'Loading...';
   String greetingMessage = 'Loading...';
   List<dynamic> _newsArticles = [];
+  Map<String, dynamic>? _weatherData;
+  String _city = 'istanbul';
   bool _isLoading = true;
-  bool _isDarkMode = false; 
+  bool _isDarkMode = false;
 
   @override
   void initState() {
@@ -30,6 +32,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Future<void> _loadLanguageAndSetTexts() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     _language = prefs.getString('selectedLanguage') ?? 'en';
+    _city = prefs.getString('selectedCity') ?? 'istanbul';
 
     homeTitle = _language == 'tr' ? 'Ana Sayfa' : 'Home';
     welcomeText = _language == 'tr'
@@ -37,33 +40,81 @@ class _HomeScreenState extends State<HomeScreen> {
         : 'Welcome, ${widget.username}!';
 
     greetingMessage = _getGreetingMessage();
-    await _fetchNews(); 
+    await _fetchNews();
+    await _fetchWeather();
     setState(() {
       _isLoading = false;
     });
   }
 
   Future<void> _fetchNews() async {
-    const url =
-        'https://newsapi.org/v2/top-headlines?country=us&apiKey=96287d2df6914204af9b1c79b489500d';
+  String url;
+  if (_language == 'tr') {
+    // Türkçe haberler için URL
+    url = 'https://api.collectapi.com/news/getNews?country=tr&tag=general';
+  } else {
+    // İngilizce haberler için URL
+    url = 'https://newsapi.org/v2/top-headlines?country=us&apiKey=96287d2df6914204af9b1c79b489500d';
+  }
+
+  try {
+    final response = await http.get(
+      Uri.parse(url),
+      headers: _language == 'tr'
+          ? {
+              'content-type': 'application/json',
+              'authorization': 'apikey 3liK3HUBCBw1cohdV7C4oC:0AQH5Lkj2HKRa4vTprvtDW'
+            }
+          : null,
+    );
+
+    if (response.statusCode == 200) {
+      final data = jsonDecode(response.body);
+      setState(() {
+        if (_language == 'tr') {
+          // Türkçe API'nin JSON formatını işlerken null kontrolü
+          _newsArticles = (data['result'] as List).where((article) {
+            return article['image'] != null &&
+                article['image'].isNotEmpty &&
+                article['name'] != null &&
+                article['description'] != null;
+          }).toList();
+        } else {
+          // İngilizce API'nin JSON formatını işlerken null kontrolü
+          _newsArticles = data['articles'].where((article) {
+            return article['urlToImage'] != null &&
+                article['urlToImage'].isNotEmpty;
+          }).toList();
+        }
+      });
+    } else {
+      print('Haberleri getirirken hata oluştu: ${response.statusCode}');
+    }
+  } catch (e) {
+    print('Haberleri getirirken bir hata oluştu: $e');
+  }
+}
+
+
+  Future<void> _fetchWeather() async {
     try {
-      final response = await http.get(Uri.parse(url));
+      final response = await http.get(
+        Uri.parse(
+            'https://api.collectapi.com/weather/getWeather?data.lang=$_language&data.city=$_city'),
+        headers: {
+          'content-type': 'application/json',
+          'authorization': 'apikey 3liK3HUBCBw1cohdV7C4oC:0AQH5Lkj2HKRa4vTprvtDW'
+        },
+      );
       if (response.statusCode == 200) {
-        final data = jsonDecode(response.body);
         setState(() {
-          _newsArticles = data['articles']
-              .where((article) =>
-                  article['urlToImage'] != null &&
-                  article['urlToImage'].isNotEmpty &&
-                  article['description'] != null &&
-                  article['description'].isNotEmpty)
-              .toList();
+          _weatherData = jsonDecode(response.body)['result'][0];
         });
       } else {
-        print('Haberleri getirirken hata oluştu: ${response.statusCode}');
+        print('Hava durumu getirilemedi: ${response.statusCode}');
       }
     } catch (e) {
-      print('Haberleri getirirken bir hata oluştu: $e');
+      print('Hava durumu getirirken hata oluştu: $e');
     }
   }
 
@@ -75,6 +126,16 @@ class _HomeScreenState extends State<HomeScreen> {
       return _language == 'tr' ? 'İyi Günler' : 'Good Afternoon';
     } else {
       return _language == 'tr' ? 'İyi Akşamlar' : 'Good Evening';
+    }
+  }
+
+  Future<bool> _validateImage(String imageUrl) async {
+    try {
+      final response = await http.get(Uri.parse(imageUrl));
+      return response.statusCode == 200;
+    } catch (e) {
+      print('Resim doğrulama hatası: $e');
+      return false;
     }
   }
 
@@ -108,7 +169,12 @@ class _HomeScreenState extends State<HomeScreen> {
           actions: [
             IconButton(
               icon: Icon(Icons.refresh),
-              onPressed: () => _fetchNews(),
+              onPressed: () {
+                setState(() {
+                  _isLoading = true;
+                });
+                _loadLanguageAndSetTexts();
+              },
             ),
             Switch(
               value: _isDarkMode,
@@ -122,115 +188,109 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         body: Column(
           children: [
-            Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    '$greetingMessage, ${widget.username}!',
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.deepPurpleAccent,
+            if (_weatherData != null)
+              Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Card(
+                  elevation: 5,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(15),
+                  ),
+                  child: ListTile(
+                    leading: Image.network(
+                      _weatherData!['icon'],
+                      width: 50,
+                      height: 50,
+                    ),
+                    title: Text(
+                      '${_weatherData!['description'] ?? ''}',
+                      style: TextStyle(fontSize: 16),
+                    ),
+                    subtitle: Text(
+                      '${_weatherData!['degree']}°C',
+                    ),
+                    trailing: Text(
+                      '${_weatherData!['date']}\n${_weatherData!['day']}',
+                      style: TextStyle(fontSize: 12),
+                    ),
+                    
+                  ),
+                ),
+              ),
+            Expanded(
+  child: _newsArticles.isNotEmpty
+      ? ListView.builder(
+          itemCount: _newsArticles.length,
+          itemBuilder: (context, index) {
+            final article = _newsArticles[index];
+            final imageUrl = _language == 'tr' ? article['image'] : article['urlToImage'];
+            final title = _language == 'tr' ? article['name'] : article['title'];
+            final description = _language == 'tr' ? article['description'] : article['description'];
+
+            return GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) => NewsDetailScreen(
+                      imageUrl: imageUrl ?? '',
+                      description: description ?? '',
                     ),
                   ),
-                ],
+                );
+              },
+              child: Card(
+                margin: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                elevation: 5,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(15),
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    if (imageUrl != null && imageUrl.isNotEmpty)
+                      ClipRRect(
+                        borderRadius: BorderRadius.vertical(
+                          top: Radius.circular(15),
+                        ),
+                        child: Image.network(
+                          imageUrl,
+                          height: 200,
+                          width: double.infinity,
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                    Padding(
+                      padding: const EdgeInsets.all(12.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            title ?? (_language == 'tr' ? 'Başlık Yok' : 'No Title'),
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          SizedBox(height: 8),
+                          Text(
+                            description ?? (_language == 'tr' ? 'Açıklama Yok' : 'No Description'),
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
+                            style: TextStyle(fontSize: 14),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
               ),
-            ),
-            Expanded(
-              child: _newsArticles.isNotEmpty
-                  ? ListView.builder(
-                      itemCount: _newsArticles.length,
-                      itemBuilder: (context, index) {
-                        final article = _newsArticles[index];
-                        final imageUrl = article['urlToImage'];
-
-                        return FutureBuilder(
-                          future: _validateImage(imageUrl),
-                          builder: (context, snapshot) {
-                            if (snapshot.connectionState ==
-                                    ConnectionState.done &&
-                                snapshot.data == true) {
-                              return GestureDetector(
-                                onTap: () {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (_) => NewsDetailScreen(
-                                        imageUrl: imageUrl,
-                                        description: article['description'] ??
-                                            (_language == 'tr'
-                                                ? 'Açıklama Yok'
-                                                : 'No Description'),
-                                      ),
-                                    ),
-                                  );
-                                },
-                                child: Card(
-                                  margin: EdgeInsets.symmetric(
-                                      horizontal: 16, vertical: 8),
-                                  elevation: 5,
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(15),
-                                  ),
-                                  child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: [
-                                      ClipRRect(
-                                        borderRadius: BorderRadius.vertical(
-                                          top: Radius.circular(15),
-                                        ),
-                                        child: Image.network(
-                                          imageUrl,
-                                          height: 200,
-                                          width: double.infinity,
-                                          fit: BoxFit.cover,
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: const EdgeInsets.all(12.0),
-                                        child: Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            Text(
-                                              article['title'] ??
-                                                  (_language == 'tr'
-                                                      ? 'Başlık Yok'
-                                                      : 'No Title'),
-                                              style: TextStyle(
-                                                fontSize: 18,
-                                                fontWeight: FontWeight.bold,
-                                              ),
-                                            ),
-                                            SizedBox(height: 8),
-                                            Text(
-                                              article['description'] ??
-                                                  (_language == 'tr'
-                                                      ? 'Açıklama Yok'
-                                                      : 'No Description'),
-                                              maxLines: 2,
-                                              overflow: TextOverflow.ellipsis,
-                                              style: TextStyle(fontSize: 14),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              );
-                            } else {
-                              return SizedBox.shrink();
-                            }
-                          },
-                        );
-                      },
-                    )
+            );
+          },
+        )
                   : Center(
                       child: Text(
-                        _language == 'tr' ? 'Hoşgeldiniz!' : welcomeText,
+                        _language == 'tr' ? 'Haber bulunamadı!' : 'No News!',
                         style: TextStyle(
                             fontSize: 24, color: Colors.deepPurpleAccent),
                       ),
@@ -241,22 +301,8 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
     );
   }
-
-  Future<bool> _validateImage(String imageUrl) async {
-    try {
-      final response = await http.get(Uri.parse(imageUrl));
-      if (response.statusCode == 200) {
-        return true;
-      } else {
-        return false;
-      }
-    } catch (e) {
-      return false;
-    }
-  }
 }
 
-// Detay ekranı
 class NewsDetailScreen extends StatelessWidget {
   final String imageUrl;
   final String description;
@@ -270,31 +316,21 @@ class NewsDetailScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('News Details'),
-        backgroundColor: Colors.deepPurpleAccent,
+        title: Text('News Detail'),
       ),
       body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              ClipRRect(
-                borderRadius: BorderRadius.circular(15),
-                child: Image.network(
-                  imageUrl,
-                  height: 250,
-                  width: double.infinity,
-                  fit: BoxFit.cover,
-                ),
-              ),
-              SizedBox(height: 16),
-              Text(
+        child: Column(
+          children: [
+            if (imageUrl.isNotEmpty)
+              Image.network(imageUrl),
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Text(
                 description,
                 style: TextStyle(fontSize: 16),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

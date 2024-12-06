@@ -12,10 +12,12 @@ dependencies:
     sdk: flutter
   flutter_localization: ^0.2.3
   flutter_secure_storage: ^9.2.2
+  geolocator: ^12.0.0
   go_router: ^14.6.2
   google_translate: ^0.0.6
   html: ^0.15.5
   http: ^1.2.2
+  marquee: ^2.3.0
   provider: ^6.1.2
   shared_preferences: ^2.3.3
   translator: ^1.0.3+1
