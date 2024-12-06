@@ -19,26 +19,23 @@ class _LoadingScreenState extends State<LoadingScreen> {
   Future<void> _checkUserStatus() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
 
-    // Dil ve giriş bilgilerini kontrol et
+
     String? language = prefs.getString('selectedLanguage');
     String? username = prefs.getString('username');
 
-    await Future.delayed(const Duration(seconds: 3)); // Yükleme animasyonu için bekleme
+    await Future.delayed(const Duration(seconds: 3)); 
 
     if (language == null) {
-      // Dil seçilmemişse, dil seçim ekranına yönlendir
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(builder: (context) => LanguageSelectionScreen()),
       );
     } else if (username == null) {
-      // Giriş yapılmamışsa, giriş ekranına yönlendir
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(builder: (context) => LoginScreen()),
       );
     } else {
-      // Her şey tamamsa, ana ekrana yönlendir
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(builder: (context) => HomeScreen(username: username)),
@@ -55,12 +52,12 @@ class _LoadingScreenState extends State<LoadingScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Image.asset(
-              'assets/images/logo.png', // Logo dosyası
+              'assets/images/logo.png', 
               width: 200,
               height: 200,
             ),
             const SizedBox(height: 20),
-            const CircularProgressIndicator(), // Yükleme animasyonu
+            const CircularProgressIndicator(), 
           ],
         ),
       ),

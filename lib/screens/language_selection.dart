@@ -9,13 +9,13 @@ class LanguageSelectionScreen extends StatefulWidget {
 }
 
 class _LanguageSelectionScreenState extends State<LanguageSelectionScreen> {
-  String _selectedLanguage = 'tr'; // Default language
+  String _selectedLanguage = 'tr'; 
 
   Future<void> _saveLanguageAndProceed(BuildContext context) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.setString('selectedLanguage', _selectedLanguage);
 
-    // Navigate to login screen
+
     Navigator.pushReplacement(
       context,
       MaterialPageRoute(builder: (context) => LoginScreen()),
@@ -40,7 +40,7 @@ class _LanguageSelectionScreenState extends State<LanguageSelectionScreen> {
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               ),
               const SizedBox(height: 20),
-              // DropdownButton for language selection
+              
               Container(
                 width: double.infinity,
                 padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -80,7 +80,7 @@ class _LanguageSelectionScreenState extends State<LanguageSelectionScreen> {
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10),
                   ),
-                  backgroundColor: Colors.blueAccent, // Corrected this line
+                  backgroundColor: Colors.blueAccent, 
                 ),
               ),
             ],
