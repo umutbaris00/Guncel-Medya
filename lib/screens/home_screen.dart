@@ -50,10 +50,10 @@ class _HomeScreenState extends State<HomeScreen> {
   Future<void> _fetchNews() async {
   String url;
   if (_language == 'tr') {
-    // Türkçe haberler için URL
+
     url = 'https://api.collectapi.com/news/getNews?country=tr&tag=general';
   } else {
-    // İngilizce haberler için URL
+
     url = 'https://newsapi.org/v2/top-headlines?country=us&apiKey=96287d2df6914204af9b1c79b489500d';
   }
 
@@ -72,7 +72,7 @@ class _HomeScreenState extends State<HomeScreen> {
       final data = jsonDecode(response.body);
       setState(() {
         if (_language == 'tr') {
-          // Türkçe API'nin JSON formatını işlerken null kontrolü
+
           _newsArticles = (data['result'] as List).where((article) {
             return article['image'] != null &&
                 article['image'].isNotEmpty &&
@@ -80,7 +80,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 article['description'] != null;
           }).toList();
         } else {
-          // İngilizce API'nin JSON formatını işlerken null kontrolü
+
           _newsArticles = data['articles'].where((article) {
             return article['urlToImage'] != null &&
                 article['urlToImage'].isNotEmpty;
