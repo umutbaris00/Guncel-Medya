@@ -1,7 +1,7 @@
 
   
 
-![Güncel Medya](https://i.hizliresim.com/9e5xcvw.png)
+![Güncel Medya](https://i.hizliresim.com/lvtu1t6.jpg)
 
   
 
