@@ -50,9 +50,9 @@ https://github.com/user-attachments/assets/1951e38d-659b-498a-acb6-b8a677b7fc22
 
 ### Gereksinimler
 
-- Flutter SDK (sürüm X.X.X)
+- Flutter SDK (sürüm 3.27.3)
 
-- Dart SDK (sürüm X.X.X)
+- Dart SDK (sürüm 3.6.1)
 
 
   
