@@ -1,0 +1,25 @@
+{
+    "articles": [
+      {
+        "image": "assets/news/haber1.png",
+        "title": "Merkez Bankası'nın faiz kararı sonrası altın ve döviz hareketlendi",
+        "description": "Merkez Bankası, Para Politikası Kurulu, 2025 yılına ilişkin ilk faiz kararını açıkladı. Banka beklenti ve anketlere paralel olarak politika faizini 2,5 puan indirilerek yüzde 45'e çekti. Karar sonrası ilk rakamlar ortaya çıktı.Karar sonrasında dolar cephesinde sınırlı olmakla birlikte yukarı yönlü bir hareketlenme gerçekleşirken altında da gram altında da yine sınırlı bir düşüş gözlendi."
+      },
+      {
+        "image": "assets/news/haber2.png",
+        "title": "Oğuzhan Uğur hakim karşısına çıktı",
+        "description": "6 Şubat depremleri sonrasında barajların çatladığı yönünde paylaşımlar yaptığı iddiası ile hakkında re'sen soruşturma başlatılan sosyal medya fenomeni Oğuzhan Uğur, ilk kez hakim karşısına çıktı.Sosyal medya fenomeni Oğuzhan Uğur'un, 6 Şubat depremi sonrası barajların çatladığı yönünde paylaşımlar yaptığı iddia edilmiş ve paylaşımlar sonrası Uğur hakkında re'sen soruşturma başlatılmıştı. Hazırlanan iddianamede, Oğuzhan Uğur, Kaan Kayacan ve Ercan Özdemir'in 'basın ve yayın yoluyla halkı yanıltıcı bilgiyi alenen yayma' suçundan 4 yıl 6 aya kadar hapisleri istenmişti."
+      },
+      {
+        "image": "assets/news/haber3.png",
+        "title": "2 bin yıllık antik Yunan heykeli çöp poşetinden çıktı",
+        "description": "Yunanistan'ın Selanik kentinde, yaklaşık 2 bin yıllık olduğu düşünülen bir kadın heykeli çöp poşetinde bulundu. Selanik'in Neoi Epivates bölgesinde yaşayan bir kişi tarafından bulunan ve yetkililere teslim edilen 80 santimetre uzunluğundaki başsız heykelin, Helenistik döneme ait olduğu açıklandı."
+      },
+      {
+        "image": "assets/news/haber4.png",
+        "title": "Türk Öğrenciler Tahran'da",
+        "description": "Türkiye'de Farsça öğrenim gören Türk öğrenciler İran'da Tahran Büyükelçiliğini ziyaret etti.İran'ın Sadi Vakfı bünyesinde düzenlenen Fars Dili ve Edebiyatları Müsabakalarında dereceye giren öğrencilere verilen İran gezisi ödülü kapsamında Tahran'a gelen öğrenciler Tahran Büyükelçisi Prof. Dr. Hicabi Kırlangıç tarafından kabul edildi."
+      }
+    ]
+  }
+  

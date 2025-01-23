@@ -1,0 +1,24 @@
+{
+  "articles": [
+    {
+      "image": "assets/news/news1.jpg",
+      "title": "Trump hopes to meet Putin soon in order to 'get that war ended'",
+      "description": "US President Donald Trump has repeated his wish to meet with Russian President Vladimir Putin to discuss an end to the war Moscow launched against Ukraine nearly three years ago. 'I really would like to meet with President Putin soon and get that war ended,' he said in remarks by video link to the World Economic Forum in Davos, Switzerland on Thursday."
+    },
+    {
+      "image": "assets/news/news2.jpg",
+      "title": "Pakistan condemns Israeli raid on Jenin refugee camp in West Bank",
+      "description": "Pakistan on Thursday condemned the Israeli raid on the Jenin refugee camp in the West Bank that killed at least 10 Palestinians. Speaking at a weekly news briefing, Pakistan's Foreign Ministry spokesperson Shafqat Ali Khan urged the international community to take notice of the latest Israeli raid. 'Such actions potentially undermine the precarious ceasefire in Gaza, and the international community should take note of it,' Khan said."
+    },
+    {
+      "image": "assets/news/news3.jpg",
+      "title": "Trump delays TikTok U.S. ban, gives 75 days to find buyer",
+      "description": "After being offline for just 12 hours in the U.S., TikTok's nationwide ban was postponed by President Donald Trump, giving the app 75 days to find a buyer. This move allows the new administration time to make an appropriate decision. According to the recently approved ban by the Supreme Court, TikTok's parent company, ByteDance, must transfer ownership to a non-China-based company to address security concerns over data collection and propaganda spread through the app's algorithm. Trump suggested that selling even 50% of the company might suffice to prevent the ban. Potential buyers include YouTuber MrBeast and tech billionaire Elon Musk."
+    },
+    {
+      "image": "assets/news/news4.jpg",
+      "title": "Over 38,000 Palestinian children orphaned by Israeli war on Gaza: Official",
+      "description": "More than 38,000 Palestinian children have been orphaned by Israel's genocidal war on the Gaza Strip since October 2023, a Health Ministry official said on Thursday. 'At least 13,901 women were also widowed by the war' Zaher al-Wahidi told Anadolu. The Palestinian official explained that some 32,151 children lost their fathers, 4,417 lost their mothers, and 1,918 lost both parents."
+    }
+  ]
+}
