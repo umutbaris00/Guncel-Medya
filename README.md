@@ -23,6 +23,11 @@ Güncel Medya güncel günlük haberleri size anında sunmayı amaçlıyor.
 
   
 
+## Demo Videosu
+
+https://github.com/user-attachments/assets/1951e38d-659b-498a-acb6-b8a677b7fc22
+
+
 ## Özellikler
 
 - En Güncel Haberleri Anlık Öğrenin
