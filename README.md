@@ -120,6 +120,7 @@ flutter  run
 
 lib/
 
+
 ├── screens/   # Uygulama ekranları
 │   ├── home_screen.dart # Ana ekran
 │   ├── language_selection.dart # Dil seçimi ekranı
