@@ -1,9 +1,11 @@
 
   
-
-![Güncel Medya](https://i.hizliresim.com/lvtu1t6.jpg)
+https://i.hizliresim.com/lvtu1t6.jpg
 
   
+
+
+https://i.hizliresim.com/sni6elz.jpg
 
 ## Proje Hakkında
 
@@ -42,9 +44,6 @@ https://github.com/user-attachments/assets/1951e38d-659b-498a-acb6-b8a677b7fc22
 - Dart
 
 
-  
-
-## Başlangıç
 
   
 
@@ -53,6 +52,8 @@ https://github.com/user-attachments/assets/1951e38d-659b-498a-acb6-b8a677b7fc22
 - Flutter SDK (sürüm 3.27.3)
 
 - Dart SDK (sürüm 3.6.1)
+
+- Java 17
 
 
   
