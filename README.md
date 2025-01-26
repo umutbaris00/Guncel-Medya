@@ -1,6 +1,6 @@
 
   
-![Güncel Medya](https://github.com/user-attachments/assets/8d203545-6021-4ab4-a223-0b38e04cb657)
+![Güncel Medya](https://i.hizliresim.com/lvtu1t6.jpg)
 
 ## Proje Hakkında
 
