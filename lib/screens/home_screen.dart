@@ -171,6 +171,8 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               Row(
                 children: [
+                  Icon(_isDarkMode ? Icons.nights_stay : Icons.wb_sunny,
+                      color: _isDarkMode ? Colors.yellow : Colors.orange), // İkon eklendi
                   Switch(
                     value: _isDarkMode,
                     onChanged: (value) {
@@ -187,7 +189,6 @@ class _HomeScreenState extends State<HomeScreen> {
                       });
                     },
                   ),
-                  
                 ],
               ),
             ],
