@@ -1,6 +1,6 @@
 
   
-![Güncel Medya](https://i.hizliresim.com/lvtu1t6.jpg)
+![Güncel Medya](https://i.hizliresim.com/afnt0xw.png)
 
 
 
