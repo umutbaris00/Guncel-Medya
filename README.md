@@ -2,6 +2,8 @@
   
 ![Güncel Medya](https://i.hizliresim.com/lvtu1t6.jpg)
 
+
+
 ## Proje Hakkında
 
 Güncel Medya güncel günlük haberleri size anında sunmayı amaçlıyor.
