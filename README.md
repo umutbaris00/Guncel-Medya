@@ -31,7 +31,17 @@ https://github.com/user-attachments/assets/1951e38d-659b-498a-acb6-b8a677b7fc22
 
 ## Ekran Görüntüleri
 
-https://github.com/user-attachments/assets/916ec5b6-96ec-44c6-819e-ce489cf5ac90
+![Image Alt](https://github.com/umutbaris00/Guncel-Medya/blob/fb130fcea94f4b1efa1d34880775d8cc54a4640a/assets/images/sni6elz.jpg)
+
+![Image Alt](https://github.com/umutbaris00/Guncel-Medya/blob/fb130fcea94f4b1efa1d34880775d8cc54a4640a/assets/images/90vc9bk.jpg)
+
+![Image Alt](https://github.com/umutbaris00/Guncel-Medya/blob/fb130fcea94f4b1efa1d34880775d8cc54a4640a/assets/images/f4i710t.jpg)
+
+![Image Alt](https://github.com/umutbaris00/Guncel-Medya/blob/fb130fcea94f4b1efa1d34880775d8cc54a4640a/assets/images/drreoxv.jpg)
+
+![Image Alt](https://github.com/umutbaris00/Guncel-Medya/blob/fb130fcea94f4b1efa1d34880775d8cc54a4640a/assets/images/mj796qm.jpg)
+
+![Image Alt](https://github.com/umutbaris00/Guncel-Medya/blob/fb130fcea94f4b1efa1d34880775d8cc54a4640a/assets/images/mmugwqn.jpg)
 
 
 ## Özellikler
