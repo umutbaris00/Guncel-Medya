@@ -1,6 +1,6 @@
 
   
-![Güncel Medya](https://i.hizliresim.com/afnt0xw.png)
+![Image Alt](https://github.com/umutbaris00/Guncel-Medya/blob/b8f731d34737f68ea73cf073ae67e7ea44470ae2/assets/icon.jpg)
 
 
 
