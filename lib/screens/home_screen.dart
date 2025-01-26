@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'dart:convert';
-import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'profile_screen.dart';
@@ -26,7 +25,6 @@ class _HomeScreenState extends State<HomeScreen> {
   String greetingMessage = 'Loading...';
   List<dynamic> _newsArticles = [];
   Map<String, dynamic>? _weatherData;
-  String _city = 'istanbul';
   bool _isLoading = true;
   bool _isDarkMode = false;
   bool _isCustomTheme = false;
@@ -80,14 +78,13 @@ class _HomeScreenState extends State<HomeScreen> {
   Future<void> _loadLanguageAndSetTexts() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     _language = prefs.getString('selectedLanguage') ?? 'en';
-    _city = prefs.getString('selectedCity') ?? 'istanbul';
     homeTitle = _language == 'tr' ? 'Ana Sayfa' : 'Home';
     welcomeText = _language == 'tr'
         ? 'Hoşgeldiniz, ${widget.username}!'
         : 'Welcome, ${widget.username}!';
     greetingMessage = _getGreetingMessage();
     await _fetchNews();
-    await _fetchWeather();
+
     setState(() {
       _isLoading = false;
     });
@@ -107,27 +104,7 @@ class _HomeScreenState extends State<HomeScreen> {
     }
   }
 
-  Future<void> _fetchWeather() async {
-    try {
-      final response = await http.get(
-        Uri.parse(
-            'https://api.collectapi.com/weather/getWeather?data.lang=$_language&data.city=$_city'),
-        headers: {
-          'content-type': '/json',
-          'authorization': 'apikey 3liK3HUBCBw1cohdV7C4oC:0AQH5Lkj2HKRa4vTprvtDW'
-        },
-      );
-      if (response.statusCode == 200) {
-        setState(() {
-          _weatherData = jsonDecode(response.body)['result'][0];
-        });
-      } else {
-        print('Failed to fetch weather: ${response.statusCode}');
-      }
-    } catch (e) {
-      print('Error fetching weather: $e');
-    }
-  }
+  
 
   String _getGreetingMessage() {
     final hour = DateTime.now().hour;
