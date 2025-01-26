@@ -120,11 +120,12 @@ flutter  run
 
 lib/
 
-├── screens/ # Uygulama ekranları
-
-├── widgets/ # Tekrar kullanılabilir arayüz öğeleri
-
-└── services/ # API servisleri
+├── screens/   # Uygulama ekranları
+│   ├── home_screen.dart # Ana ekran
+│   ├── language_selection.dart # Dil seçimi ekranı
+│   ├── loading.dart # Yükleniyor ekranı
+│   ├── login_screen.dart # Giriş ekranı
+│   └── profile_screen.dart #Profil ekranı
 
 ```
 
