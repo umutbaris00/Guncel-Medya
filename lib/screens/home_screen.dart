@@ -156,6 +156,7 @@ class _HomeScreenState extends State<HomeScreen> {
       );
     }
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       themeMode: _isDarkMode ? ThemeMode.dark : ThemeMode.light,
       darkTheme: ThemeData.dark(),
       theme: ThemeData.light(),
@@ -186,10 +187,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       });
                     },
                   ),
-                  Text(
-                    '${widget.username} 👋',
-                    style: textTheme.copyWith(fontSize: 20, color: Colors.white),
-                  ),
+                  
                 ],
               ),
             ],
@@ -274,7 +272,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                     borderRadius: BorderRadius.vertical(
                                       top: Radius.circular(15),
                                     ),
-                                    child: Image.network(
+                                    child: Image.asset(
                                       imageUrl,
                                       height: 200,
                                       width: double.infinity,
@@ -370,7 +368,7 @@ class NewsDetailScreen extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            if (imageUrl.isNotEmpty) Image.network(imageUrl),
+            if (imageUrl.isNotEmpty) Image.asset(imageUrl),
             Padding(
               padding: const EdgeInsets.all(16.0),
               child: Text(

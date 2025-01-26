@@ -12,10 +12,10 @@ class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController _passwordController = TextEditingController();
 
   String _language = 'tr'; 
-  late String loginTitle;
-  late String usernameLabel;
-  late String passwordLabel;
-  late String loginButton;
+  late String loginTitle = '...';
+  late String usernameLabel = '...';
+  late String passwordLabel = '...';
+  late String loginButton = '...';
 
   @override
   void initState() {

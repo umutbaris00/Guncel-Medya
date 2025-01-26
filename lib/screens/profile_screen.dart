@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:flutter/foundation.dart';
-import 'dart:typed_data'; 
-import 'dart:io'; 
+import 'dart:typed_data';
+import 'dart:io';
 import 'package:file_picker/file_picker.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:flutter/foundation.dart';
 import 'home_screen.dart';
+import 'language_selection.dart'; // LanguageSelection sayfasını ekledik
 
 class ProfileScreen extends StatefulWidget {
   @override
@@ -14,14 +15,14 @@ class ProfileScreen extends StatefulWidget {
 
 class _ProfileScreenState extends State<ProfileScreen> {
   File? _imageFile;
-  Uint8List? _webImage; 
-  String? _username; 
+  Uint8List? _webImage;
+  String? _username;
   String _language = 'en';
 
   @override
   void initState() {
     super.initState();
-    _loadSavedData(); 
+    _loadSavedData();
   }
 
   Future<void> _loadSavedData() async {
@@ -30,6 +31,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       _username = prefs.getString('username') ?? 'Misafir';
       _language = prefs.getString('selectedLanguage') ?? 'en';
     });
+
     if (kIsWeb) {
       final savedData = prefs.getString('user_avatar_web');
       if (savedData != null) {
@@ -53,22 +55,29 @@ class _ProfileScreenState extends State<ProfileScreen> {
   Future<void> pickImage() async {
     FilePickerResult? result = await FilePicker.platform.pickFiles(
       type: FileType.image,
-      withData: true, 
+      withData: true,
     );
+
     if (result != null) {
-      if (result.files.single.bytes != null) {
-        setState(() {
-          _webImage = result.files.single.bytes;
-          _imageFile = null; 
-        });
-        _saveImageWeb(result.files.single.bytes!);
-      } else if (result.files.single.path != null) {
-        File file = File(result.files.single.path!);
-        setState(() {
-          _imageFile = file;
-          _webImage = null; 
-        });
-        _saveImageMobile(file);
+      if (kIsWeb) {
+        // Web platformu için kaydetme işlemi
+        if (result.files.single.bytes != null) {
+          setState(() {
+            _webImage = result.files.single.bytes;
+            _imageFile = null;
+          });
+          _saveImageWeb(result.files.single.bytes!);
+        }
+      } else {
+        // Mobil platform için kaydetme işlemi
+        if (result.files.single.path != null) {
+          File file = File(result.files.single.path!);
+          setState(() {
+            _imageFile = file;
+            _webImage = null;
+          });
+          _saveImageMobile(file);
+        }
       }
     } else {
       print("Resim seçimi iptal edildi.");
@@ -80,13 +89,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
     final savedPath = '${directory.path}/user_avatar.png';
     final savedFile = await image.copy(savedPath);
     final prefs = await SharedPreferences.getInstance();
-    prefs.setString('user_avatar', savedFile.path);
+    await prefs.setString('user_avatar', savedFile.path);
     print("Resim mobilde kaydedildi: $savedPath");
   }
 
   Future<void> _saveImageWeb(Uint8List bytes) async {
     final prefs = await SharedPreferences.getInstance();
-    prefs.setString('user_avatar_web', String.fromCharCodes(bytes));
+    await prefs.setString('user_avatar_web', String.fromCharCodes(bytes));
     print("Resim web'de kaydedildi.");
   }
 
@@ -151,13 +160,32 @@ class _ProfileScreenState extends State<ProfileScreen> {
               ElevatedButton(
                 onPressed: pickImage,
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.purple, 
+                  backgroundColor: Colors.purple,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10),
                   ),
                 ),
                 child: Text(
                   _language == 'en' ? 'Change Profile Picture' : 'Profil Resmini Değiştir',
+                  style: TextStyle(color: Colors.white),
+                ),
+              ),
+              SizedBox(height: 10), // Butonlar arasında boşluk
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => LanguageSelectionScreen()),
+                  );
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.blue, // Butonun arka plan rengi
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                ),
+                child: Text(
+                  _language == 'en' ? 'Change Language' : 'Dil Değiştir',
                   style: TextStyle(color: Colors.white),
                 ),
               ),
