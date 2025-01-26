@@ -1,11 +1,6 @@
 
   
-https://i.hizliresim.com/lvtu1t6.jpg
-
-  
-
-
-https://i.hizliresim.com/sni6elz.jpg
+https://github.com/user-attachments/assets/8d203545-6021-4ab4-a223-0b38e04cb657
 
 ## Proje Hakkında
 
@@ -28,6 +23,13 @@ Güncel Medya güncel günlük haberleri size anında sunmayı amaçlıyor.
 ## Demo Videosu
 
 https://github.com/user-attachments/assets/1951e38d-659b-498a-acb6-b8a677b7fc22
+
+
+
+
+## Ekran Görüntüleri
+
+https://github.com/user-attachments/assets/916ec5b6-96ec-44c6-819e-ce489cf5ac90
 
 
 ## Özellikler
