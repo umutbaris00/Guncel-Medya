@@ -13,12 +13,12 @@ Güncel Medya güncel günlük haberleri size anında sunmayı amaçlıyor.
 ## Ekibimiz
 
 -  **Danışman:**  
-(Umut Barış) [https://github.com/umutbaris00]
+[Umut Barış](https://github.com/umutbaris00)
 
 
 -  **Takım Üyeleri:**
 
-- Umut Barış [https://github.com/umutbaris00]
+- [Umut Barış](https://github.com/umutbaris00)
 
   
 
