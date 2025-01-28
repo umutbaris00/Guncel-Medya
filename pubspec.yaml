@@ -39,7 +39,6 @@ flutter:
     - assets/images/
     - assets/news/
     - assets/languages/
-    - assets/animations/
     - assets/news_tr.json
     - assets/news_en.json
     - assets/default_avatar.png

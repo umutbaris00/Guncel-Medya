@@ -6,7 +6,7 @@ import 'package:file_picker/file_picker.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:flutter/foundation.dart';
 import 'home_screen.dart';
-import 'language_selection.dart'; // LanguageSelection sayfasını ekledik
+import 'language_selection.dart'; 
 
 class ProfileScreen extends StatefulWidget {
   @override
@@ -60,7 +60,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
     if (result != null) {
       if (kIsWeb) {
-        // Web platformu için kaydetme işlemi
+        // web kaydetme
         if (result.files.single.bytes != null) {
           setState(() {
             _webImage = result.files.single.bytes;
@@ -69,7 +69,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           _saveImageWeb(result.files.single.bytes!);
         }
       } else {
-        // Mobil platform için kaydetme işlemi
+        //mobil kaydetme
         if (result.files.single.path != null) {
           File file = File(result.files.single.path!);
           setState(() {
@@ -170,7 +170,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   style: TextStyle(color: Colors.white),
                 ),
               ),
-              SizedBox(height: 10), // Butonlar arasında boşluk
+              SizedBox(height: 10), 
               ElevatedButton(
                 onPressed: () {
                   Navigator.push(
@@ -179,7 +179,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   );
                 },
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.blue, // Butonun arka plan rengi
+                  backgroundColor: Colors.blue, 
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10),
                   ),
