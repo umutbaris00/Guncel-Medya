@@ -6,6 +6,7 @@ import 'profile_screen.dart';
 import 'package:flutter/foundation.dart';
 import 'dart:typed_data';
 import 'dart:io';
+import 'package:google_fonts/google_fonts.dart';
 
 class HomeScreen extends StatefulWidget {
   final String username;
@@ -24,7 +25,6 @@ class _HomeScreenState extends State<HomeScreen> {
   String welcomeText = 'Loading...';
   String greetingMessage = 'Loading...';
   List<dynamic> _newsArticles = [];
-  Map<String, dynamic>? _weatherData;
   bool _isLoading = true;
   bool _isDarkMode = false;
   bool _isCustomTheme = false;
@@ -82,7 +82,7 @@ class _HomeScreenState extends State<HomeScreen> {
     welcomeText = _language == 'tr'
         ? 'Hoşgeldiniz, ${widget.username}!'
         : 'Welcome, ${widget.username}!';
-    greetingMessage = _getGreetingMessage();
+
     await _fetchNews();
 
     setState(() {
@@ -104,27 +104,17 @@ class _HomeScreenState extends State<HomeScreen> {
     }
   }
 
-  
-
-  String _getGreetingMessage() {
-    final hour = DateTime.now().hour;
-    if (hour < 12) {
-      return _language == 'tr' ? 'Günaydın' : 'Good Morning';
-    } else if (hour < 18) {
-      return _language == 'tr' ? 'İyi Günler' : 'Good Afternoon';
-    } else {
-      return _language == 'tr' ? 'İyi Akşamlar' : 'Good Evening';
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     final textTheme = _isCustomTheme
-        ? TextStyle(color: Colors.red, fontFamily: 'Courier', fontSize: 18)
-        : TextStyle(
-            color: const Color.fromARGB(255, 121, 121, 121),
-            fontFamily: 'Arial',
-            fontSize: 16);
+      ? GoogleFonts.oswald(  
+          color: Colors.red,
+          fontSize: 18,
+        )
+      : GoogleFonts.roboto(
+          color: const Color.fromARGB(255, 158, 158, 158),
+          fontSize: 16,
+        );
     if (_isLoading) {
       return Scaffold(
         body: Center(
@@ -185,35 +175,6 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         body: Column(
           children: [
-            if (_weatherData != null)
-              Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Card(
-                  elevation: 5,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(15),
-                  ),
-                  child: ListTile(
-                    leading: Image.network(
-                      _weatherData!['icon'],
-                      width: 50,
-                      height: 50,
-                    ),
-                    title: Text(
-                      '${_weatherData!['description'] ?? ''}',
-                      style: textTheme,
-                    ),
-                    subtitle: Text(
-                      '${_weatherData!['degree']}°C',
-                      style: textTheme,
-                    ),
-                    trailing: Text(
-                      '${_weatherData!['date']}\n${_weatherData!['day']}',
-                      style: textTheme.copyWith(fontSize: 12),
-                    ),
-                  ),
-                ),
-              ),
             Expanded(
               child: _newsArticles.isNotEmpty
                   ? ListView.builder(

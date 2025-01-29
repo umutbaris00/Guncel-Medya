@@ -46,7 +46,7 @@ class _LoginScreenState extends State<LoginScreen> {
   Future<void> _saveLoginAndProceed() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.setString('username', _usernameController.text);
-    await prefs.setString('password', _passwordController.text);
+
 
 
     Navigator.pushReplacement(

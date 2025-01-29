@@ -14,7 +14,6 @@ class AppRoutes {
       case '/auth':
         return MaterialPageRoute(builder: (_) => LoginScreen());
       case '/home':
-        // Kullanıcı adını burada argument olarak alabiliriz
         final String? username = settings.arguments as String?;
         return MaterialPageRoute(
           builder: (_) => HomeScreen(username: username ?? 'Kullanıcı'),

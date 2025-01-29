@@ -47,6 +47,7 @@ class _LoadingScreenState extends State<LoadingScreen> with SingleTickerProvider
 
     await Future.delayed(const Duration(seconds: 6));
 
+    //eğer dil ve kullanıcı adı yoksa seçtir 
     if (language == null) {
       Navigator.pushReplacement(
         context,
@@ -74,7 +75,7 @@ class _LoadingScreenState extends State<LoadingScreen> with SingleTickerProvider
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false, // DEBUG etiketini kaldırır
+      debugShowCheckedModeBanner: false, 
       home: Scaffold(
         body: AnimatedBuilder(
           animation: _animationController,
