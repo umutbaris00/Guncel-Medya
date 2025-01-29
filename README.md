@@ -37,9 +37,9 @@ https://github.com/user-attachments/assets/6db1091d-cc16-41e6-be11-921492405669
 
 ![Image Alt](https://github.com/umutbaris00/Guncel-Medya/blob/fb130fcea94f4b1efa1d34880775d8cc54a4640a/assets/images/f4i710t.jpg)
 
-![Image Alt](https://github.com/umutbaris00/Guncel-Medya/blob/fb130fcea94f4b1efa1d34880775d8cc54a4640a/assets/images/drreoxv.jpg)
+![Image Alt](https://github.com/umutbaris00/Guncel-Medya/blob/d356463c22e66029904fbacc3e015bb2cca652b9/assets/images/ss1.PNG)
 
-![Image Alt](https://github.com/umutbaris00/Guncel-Medya/blob/fb130fcea94f4b1efa1d34880775d8cc54a4640a/assets/images/mj796qm.jpg)
+![Image Alt](https://github.com/umutbaris00/Guncel-Medya/blob/d356463c22e66029904fbacc3e015bb2cca652b9/assets/images/ss2.PNG)
 
 ![Image Alt](https://github.com/umutbaris00/Guncel-Medya/blob/fb130fcea94f4b1efa1d34880775d8cc54a4640a/assets/images/mmugwqn.jpg)
 
