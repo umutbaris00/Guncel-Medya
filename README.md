@@ -31,15 +31,15 @@ https://github.com/user-attachments/assets/6db1091d-cc16-41e6-be11-921492405669
 
 ## Ekran Görüntüleri
 
-![Image Alt](https://github.com/umutbaris00/Guncel-Medya/blob/fb130fcea94f4b1efa1d34880775d8cc54a4640a/assets/images/sni6elz.jpg)
+![Image Alt](https://github.com/umutbaris00/Guncel-Medya/blob/4811b719490d2bb9615d78f30cc348e607c7e5e2/assets/images/sss4.PNG)
 
-![Image Alt](https://github.com/umutbaris00/Guncel-Medya/blob/fb130fcea94f4b1efa1d34880775d8cc54a4640a/assets/images/90vc9bk.jpg)
+![Image Alt](https://github.com/umutbaris00/Guncel-Medya/blob/4811b719490d2bb9615d78f30cc348e607c7e5e2/assets/images/sss2.PNG)
 
-![Image Alt](https://github.com/umutbaris00/Guncel-Medya/blob/fb130fcea94f4b1efa1d34880775d8cc54a4640a/assets/images/f4i710t.jpg)
+![Image Alt](https://github.com/umutbaris00/Guncel-Medya/blob/4811b719490d2bb9615d78f30cc348e607c7e5e2/assets/images/sss3.PNG)
 
-![Image Alt](https://github.com/umutbaris00/Guncel-Medya/blob/d356463c22e66029904fbacc3e015bb2cca652b9/assets/images/ss1.PNG)
+![Image Alt](https://github.com/umutbaris00/Guncel-Medya/blob/4811b719490d2bb9615d78f30cc348e607c7e5e2/assets/images/sss5.PNG)
 
-![Image Alt](https://github.com/umutbaris00/Guncel-Medya/blob/d356463c22e66029904fbacc3e015bb2cca652b9/assets/images/ss2.PNG)
+![Image Alt](https://github.com/umutbaris00/Guncel-Medya/blob/4811b719490d2bb9615d78f30cc348e607c7e5e2/assets/images/sss6.PNG)
 
 ![Image Alt](https://github.com/umutbaris00/Guncel-Medya/blob/fb130fcea94f4b1efa1d34880775d8cc54a4640a/assets/images/mmugwqn.jpg)
 
