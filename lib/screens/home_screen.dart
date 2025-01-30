@@ -144,8 +144,8 @@ class _HomeScreenState extends State<HomeScreen> {
                       return GestureDetector(
                         onTap: () {
                           context.push('/news_detail', extra: {
-                            'imageUrl': imageUrl ?? '',
-                            'description': description ?? '',
+                            'imageUrl': imageUrl?.toString() ?? '',
+                            'description': description?.toString() ?? '',
                           });
                         },
                         child: Card(

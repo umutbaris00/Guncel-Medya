@@ -7,6 +7,7 @@ import 'screens/language_selection.dart';
 import 'screens/login_screen.dart';
 import 'screens/home_screen.dart';
 import 'screens/profile_screen.dart';
+import 'screens/news_detail.dart'; // Haber detay sayfasını ekledik!
 
 void main() {
   runApp(
@@ -34,6 +35,16 @@ class MyApp extends StatelessWidget {
           builder: (context, state) {
             final username = state.extra as String?;
             return HomeScreen(username: username ?? 'Guest');
+          },
+        ),
+        GoRoute(
+          path: '/news_detail',
+          builder: (context, state) {
+            final Map<String, String> newsData = state.extra as Map<String, String>;
+            return NewsDetailScreen(
+              imageUrl: newsData['imageUrl'] ?? '',
+              description: newsData['description'] ?? 'Açıklama bulunamadı.',
+            );
           },
         ),
       ],
