@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'home_screen.dart';
+import 'package:lottie/lottie.dart';
+import 'package:go_router/go_router.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -27,7 +28,6 @@ class _LoginScreenState extends State<LoginScreen> {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     _language = prefs.getString('selectedLanguage') ?? 'tr'; 
 
-
     if (_language == 'tr') {
       loginTitle = 'Giriş Yap';
       usernameLabel = 'Kullanıcı Adı';
@@ -47,14 +47,7 @@ class _LoginScreenState extends State<LoginScreen> {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.setString('username', _usernameController.text);
 
-
-
-    Navigator.pushReplacement(
-      context,
-      MaterialPageRoute(
-        builder: (context) => HomeScreen(username: _usernameController.text),
-      ),
-    );
+    context.go('/home', extra: _usernameController.text);
   }
 
   @override
@@ -82,10 +75,19 @@ class _LoginScreenState extends State<LoginScreen> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                SizedBox(height: 100),
+                const SizedBox(height: 50),
+
+                //lottie animasyonu
+                Lottie.asset(
+                  'assets/animations/login.json', 
+                  width: 200, 
+                  height: 200,
+                ),
+
+                const SizedBox(height: 20),
                 Text(
                   loginTitle,
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 32,
                     fontWeight: FontWeight.bold,
                     color: Colors.white,
@@ -96,11 +98,11 @@ class _LoginScreenState extends State<LoginScreen> {
                   controller: _usernameController,
                   decoration: InputDecoration(
                     labelText: usernameLabel,
-                    labelStyle: TextStyle(color: const Color.fromARGB(255, 2, 0, 0)), 
+                    labelStyle: const TextStyle(color: Colors.black), 
                     fillColor: Colors.white,
                     filled: true,
-                    border: OutlineInputBorder(),
-                    focusedBorder: OutlineInputBorder(
+                    border: const OutlineInputBorder(),
+                    focusedBorder: const OutlineInputBorder(
                       borderSide: BorderSide(color: Colors.white, width: 2),
                     ),
                   ),
@@ -110,11 +112,11 @@ class _LoginScreenState extends State<LoginScreen> {
                   controller: _passwordController,
                   decoration: InputDecoration(
                     labelText: passwordLabel,
-                    labelStyle: TextStyle(color: const Color.fromARGB(255, 5, 0, 0)), 
+                    labelStyle: const TextStyle(color: Colors.black), 
                     fillColor: Colors.white,
                     filled: true,
-                    border: OutlineInputBorder(),
-                    focusedBorder: OutlineInputBorder(
+                    border: const OutlineInputBorder(),
+                    focusedBorder: const OutlineInputBorder(
                       borderSide: BorderSide(color: Colors.white, width: 2),
                     ),
                   ),
@@ -125,14 +127,14 @@ class _LoginScreenState extends State<LoginScreen> {
                   onPressed: _saveLoginAndProceed,
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.orangeAccent, 
-                    padding: EdgeInsets.symmetric(vertical: 15, horizontal: 40),
+                    padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 40),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(30),
                     ),
                   ),
                   child: Text(
                     loginButton,
-                    style: TextStyle(fontSize: 18),
+                    style: const TextStyle(fontSize: 18),
                   ),
                 ),
               ],

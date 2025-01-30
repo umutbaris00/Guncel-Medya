@@ -5,8 +5,7 @@ import 'dart:io';
 import 'package:file_picker/file_picker.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:flutter/foundation.dart';
-import 'home_screen.dart';
-import 'language_selection.dart'; 
+import 'package:go_router/go_router.dart';
 
 class ProfileScreen extends StatefulWidget {
   @override
@@ -18,6 +17,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   Uint8List? _webImage;
   String? _username;
   String _language = 'en';
+  
 
   @override
   void initState() {
@@ -28,6 +28,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   Future<void> _loadSavedData() async {
     final prefs = await SharedPreferences.getInstance();
     setState(() {
+      
       _username = prefs.getString('username') ?? 'Misafir';
       _language = prefs.getString('selectedLanguage') ?? 'en';
     });
@@ -60,7 +61,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
     if (result != null) {
       if (kIsWeb) {
-        // web kaydetme
         if (result.files.single.bytes != null) {
           setState(() {
             _webImage = result.files.single.bytes;
@@ -69,7 +69,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
           _saveImageWeb(result.files.single.bytes!);
         }
       } else {
-        //mobil kaydetme
         if (result.files.single.path != null) {
           File file = File(result.files.single.path!);
           setState(() {
@@ -88,7 +87,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
     final directory = await getApplicationDocumentsDirectory();
     final savedPath = '${directory.path}/user_avatar.png';
     final savedFile = await image.copy(savedPath);
+    
+    
     final prefs = await SharedPreferences.getInstance();
+
     await prefs.setString('user_avatar', savedFile.path);
     print("Resim mobilde kaydedildi: $savedPath");
   }
@@ -107,10 +109,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
           onPressed: () {
-            Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(builder: (context) => HomeScreen(username: _username ?? 'Misafir')),
-            );
+            
+            context.push('/home', extra: _username ?? 'Misafir');
           },
         ),
       ),
@@ -170,16 +170,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   style: TextStyle(color: Colors.white),
                 ),
               ),
-              SizedBox(height: 10), 
+              SizedBox(height: 10),
               ElevatedButton(
                 onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => LanguageSelectionScreen()),
-                  );
+                  context.push('/language_selection');
                 },
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.blue, 
+                  backgroundColor: Colors.blue,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10),
                   ),
@@ -196,7 +193,3 @@ class _ProfileScreenState extends State<ProfileScreen> {
     );
   }
 }
-
-void main() => runApp(MaterialApp(
-  home: ProfileScreen(),
-));

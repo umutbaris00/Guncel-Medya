@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'login_screen.dart';
+import 'package:lottie/lottie.dart';
+import 'package:go_router/go_router.dart';
 
 class LanguageSelectionScreen extends StatefulWidget {
   @override
@@ -12,16 +13,13 @@ class _LanguageSelectionScreenState extends State<LanguageSelectionScreen> {
   String _selectedLanguage = 'tr';
   bool _isTurkishSelected = true;
   bool _isEnglishSelected = false;
-  String _buttonText = 'Seçimi Onayla'; 
+  String _buttonText = 'Seçimi Onayla';
 
   Future<void> _saveLanguageAndProceed(BuildContext context) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.setString('selectedLanguage', _selectedLanguage);
 
-    Navigator.pushReplacement(
-      context,
-      MaterialPageRoute(builder: (context) => LoginScreen()),
-    );
+    context.go('/login'); 
   }
 
   @override
@@ -37,13 +35,18 @@ class _LanguageSelectionScreenState extends State<LanguageSelectionScreen> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              Lottie.asset(
+                'assets/animations/lang.json',
+                width: 200,
+                height: 200,
+              ),
+              const SizedBox(height: 20),
               const Text(
                 'Lütfen bir dil seçin:',
                 style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
               ),
               const SizedBox(height: 30),
 
-              
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -53,7 +56,7 @@ class _LanguageSelectionScreenState extends State<LanguageSelectionScreen> {
                         _selectedLanguage = 'tr';
                         _isTurkishSelected = true;
                         _isEnglishSelected = false;
-                        _buttonText = 'Seçimi Onayla'; 
+                        _buttonText = 'Seçimi Onayla';
                       });
                     },
                     child: Container(
@@ -84,7 +87,7 @@ class _LanguageSelectionScreenState extends State<LanguageSelectionScreen> {
                         _selectedLanguage = 'en';
                         _isEnglishSelected = true;
                         _isTurkishSelected = false;
-                        _buttonText = 'Confirm'; 
+                        _buttonText = 'Confirm';
                       });
                     },
                     child: Container(
@@ -114,8 +117,7 @@ class _LanguageSelectionScreenState extends State<LanguageSelectionScreen> {
 
               const SizedBox(height: 30),
 
-            
-              if (_isTurkishSelected || _isEnglishSelected) 
+              if (_isTurkishSelected || _isEnglishSelected)
                 ElevatedButton(
                   onPressed: () => _saveLanguageAndProceed(context),
                   child: Text(
