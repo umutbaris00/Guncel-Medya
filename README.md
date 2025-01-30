@@ -24,7 +24,7 @@ Güncel Medya güncel günlük haberleri size anında sunmayı amaçlıyor.
 
 ## Demo Videosu
 
-https://github.com/user-attachments/assets/6db1091d-cc16-41e6-be11-921492405669
+https://github.com/user-attachments/assets/f8a22d44-94ca-4093-ba57-e6c45f75e63b
 
 
 
